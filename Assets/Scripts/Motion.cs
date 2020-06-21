@@ -7,51 +7,84 @@ public class Motion : MonoBehaviour
 
     public float speed;
 
-    private Vector2 input;
+    private int input;
     private Animator animator;
-    private int isMovingParamID;
 
+    private const int NO_MOVE = -1;
+
+    private Vector2[] inputToVector = new Vector2[4];
+
+    private const string IS_MOVING_PARAM_NAME = "isMoving";
+    private const string DIRECTION_PARAM_NAME = "direction";
     void Start()
     {
-        input = new Vector2(0.0f, 0.0f);
+        inputToVector[(int)Direction.Up] = Vector2.up;
+        inputToVector[(int)Direction.Down] = Vector2.down;
+        inputToVector[(int)Direction.Left] = Vector2.left;
+        inputToVector[(int)Direction.Right] = Vector2.right;
+
+        input = NO_MOVE;
+
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
     }
 
     void FixedUpdate()
-    { 
-        animator.SetBool("isMoving", System.Math.Abs(input.SqrMagnitude()) > 0.0f ? true : false); 
-        
-        float dx = Time.fixedDeltaTime * input.x * speed;
-        float dy = Time.fixedDeltaTime * input.y * speed;
-        transform.position += new Vector3(dx, dy);
-        input.x = 0.0f;
-        input.y = 0.0f;
-        
+    {
+        UpdateMovement();
+        UpdateAnimator();
+        ResetInput();
+    }
+
+    private void UpdateMovement() 
+    {
+        if (input != NO_MOVE)
+        {
+            Vector2 velocity = inputToVector[input];
+            transform.Translate(velocity * speed * Time.fixedDeltaTime);
+        }
+    }
+
+    private void UpdateAnimator()
+    {
+        if (input != NO_MOVE)
+        {
+            animator.SetBool(IS_MOVING_PARAM_NAME, true);
+            animator.SetInteger(DIRECTION_PARAM_NAME, input);
+        }
+        else
+        {
+            animator.SetBool(IS_MOVING_PARAM_NAME, false);
+        }
+
+    }
+
+    private void ResetInput()
+    {
+        input = NO_MOVE;
     }
 
     public void MoveUp()
     {
-        input.y += 1;
+        input = (int)Direction.Up;
     }
 
-    public void MoveDown() 
+    public void MoveDown()
     {
-        input.y -= 1;
-    }
-
-    public void MoveLeft()
-    {
-        input.x -= 1;
+        input = (int)Direction.Down;
     }
 
     public void MoveRight()
     {
-        input.x += 1;
+        input = (int)Direction.Right;
+    }
+
+    public void MoveLeft()
+    {
+        input = (int)Direction.Left;
     }
 }
