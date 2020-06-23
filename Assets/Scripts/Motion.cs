@@ -44,6 +44,8 @@ public class Motion : MonoBehaviour
     {
         if (input != NO_MOVE)
         {
+            animator.SetFloat("Horizontal", inputToVector[input].x);
+            animator.SetFloat("Vertical", inputToVector[input].y);
             Vector2 velocity = inputToVector[input];
             transform.Translate(velocity * speed * Time.fixedDeltaTime);
         }
