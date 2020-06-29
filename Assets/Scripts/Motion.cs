@@ -7,25 +7,25 @@ public class Motion : MonoBehaviour
 
     public float speed;
 
-    private int input;
-    private Animator animator;
+    private int _input;
+    private Animator _animator;
 
-    private const int NO_MOVE = -1;
+    private const int NoMove = -1;
 
-    private Vector2[] inputToVector = new Vector2[4];
-
-    private const string IS_MOVING_PARAM_NAME = "isMoving";
-    private const string DIRECTION_PARAM_NAME = "direction";
+    private static readonly Vector2[] InputToVector = new Vector2[4];
+    private static readonly int Horizontal = Animator.StringToHash("Horizontal");
+    private static readonly int Vertical = Animator.StringToHash("Vertical");
+    private static readonly int IsMoving = Animator.StringToHash("isMoving");
     void Start()
     {
-        inputToVector[(int)Direction.Up] = Vector2.up;
-        inputToVector[(int)Direction.Down] = Vector2.down;
-        inputToVector[(int)Direction.Left] = Vector2.left;
-        inputToVector[(int)Direction.Right] = Vector2.right;
+        InputToVector[(int)Direction.Up] = Vector2.up;
+        InputToVector[(int)Direction.Down] = Vector2.down;
+        InputToVector[(int)Direction.Left] = Vector2.left;
+        InputToVector[(int)Direction.Right] = Vector2.right;
 
-        input = NO_MOVE;
+        _input = NoMove;
 
-        animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -42,51 +42,42 @@ public class Motion : MonoBehaviour
 
     private void UpdateMovement() 
     {
-        if (input != NO_MOVE)
+        if (_input != NoMove)
         {
-            animator.SetFloat("Horizontal", inputToVector[input].x);
-            animator.SetFloat("Vertical", inputToVector[input].y);
-            Vector2 velocity = inputToVector[input];
-            transform.Translate(velocity * speed * Time.fixedDeltaTime);
+            Vector2 velocity = InputToVector[_input];
+            _animator.SetFloat(Horizontal, velocity.x);
+            _animator.SetFloat(Vertical, velocity.y);
+            transform.Translate(velocity * (speed * Time.fixedDeltaTime));
         }
     }
 
     private void UpdateAnimator()
     {
-        if (input != NO_MOVE)
-        {
-            animator.SetBool(IS_MOVING_PARAM_NAME, true);
-            animator.SetInteger(DIRECTION_PARAM_NAME, input);
-        }
-        else
-        {
-            animator.SetBool(IS_MOVING_PARAM_NAME, false);
-        }
-
+        _animator.SetBool(IsMoving, _input != NoMove);
     }
 
     private void ResetInput()
     {
-        input = NO_MOVE;
+        _input = NoMove;
     }
 
     public void MoveUp()
     {
-        input = (int)Direction.Up;
+        _input = (int)Direction.Up;
     }
 
     public void MoveDown()
     {
-        input = (int)Direction.Down;
+        _input = (int)Direction.Down;
     }
 
     public void MoveRight()
     {
-        input = (int)Direction.Right;
+        _input = (int)Direction.Right;
     }
 
     public void MoveLeft()
     {
-        input = (int)Direction.Left;
+        _input = (int)Direction.Left;
     }
 }

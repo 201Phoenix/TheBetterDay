@@ -5,11 +5,11 @@ using UnityEngine;
 public class MainCharacterController : MonoBehaviour
 {
 
-    private Motion motion;
+    private Motion _motion;
 
     void Start()
     {
-        motion = GetComponent<Motion>();
+        _motion = GetComponent<Motion>();
     }
 
    
@@ -18,22 +18,22 @@ public class MainCharacterController : MonoBehaviour
         Debug.Log(Input.GetAxis("Horizontal"));
         if (Input.GetKey(KeyCode.A))
         {
-            motion.MoveLeft();
+            _motion.MoveLeft();
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            motion.MoveRight();
+            _motion.MoveRight();
         }
 
         if (Input.GetKey(KeyCode.W))
         {
-            motion.MoveUp(); 
+            _motion.MoveUp(); 
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            motion.MoveDown();
+            _motion.MoveDown();
         }
     }
 
