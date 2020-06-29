@@ -10,7 +10,7 @@ public class Motion : MonoBehaviour
     private int _input;
     private Animator _animator;
 
-    private const int NoMove = -1;
+    private const int NoMoving = -1;
 
     private static readonly Vector2[] InputToVector = new Vector2[4];
     private static readonly int Horizontal = Animator.StringToHash("Horizontal");
@@ -23,7 +23,7 @@ public class Motion : MonoBehaviour
         InputToVector[(int)Direction.Left] = Vector2.left;
         InputToVector[(int)Direction.Right] = Vector2.right;
 
-        _input = NoMove;
+        _input = NoMoving;
 
         _animator = GetComponent<Animator>();
     }
@@ -42,7 +42,7 @@ public class Motion : MonoBehaviour
 
     private void UpdateMovement() 
     {
-        if (_input != NoMove)
+        if (_input != NoMoving)
         {
             Vector2 velocity = InputToVector[_input];
             _animator.SetFloat(Horizontal, velocity.x);
@@ -53,12 +53,12 @@ public class Motion : MonoBehaviour
 
     private void UpdateAnimator()
     {
-        _animator.SetBool(IsMoving, _input != NoMove);
+        _animator.SetBool(IsMoving, _input != NoMoving);
     }
 
     private void ResetInput()
     {
-        _input = NoMove;
+        _input = NoMoving;
     }
 
     public void MoveUp()
