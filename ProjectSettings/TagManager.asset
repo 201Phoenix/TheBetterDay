@@ -38,18 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
-    uniqueID: 1089378327
+  - name: Default
+    uniqueID: 0
     locked: 0
-  - name: Front
-    uniqueID: 4260297603
-    locked: 0
-  - name: Midle
-    uniqueID: 1089378327
+  - name: Back
+    uniqueID: 1368024209
     locked: 0
   - name: Sprites
     uniqueID: 1553881683
     locked: 0
-  - name: Back
-    uniqueID: 1368024209
+  - name: Midle
+    uniqueID: 1089378327
+    locked: 0
+  - name: Front
+    uniqueID: 4260297603
     locked: 0
