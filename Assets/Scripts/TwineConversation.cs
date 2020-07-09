@@ -90,4 +90,15 @@ public class TwineConversation
     {
         return _tags.Find((s => s.Equals(tag))) != null;
     }
+
+    public List<string> Tags
+    {
+        get => _tags;
+        set => _tags = value;
+    }
+
+    public override string ToString()
+    {
+        return $"{nameof(Title)}: {Title}, {nameof(Sentences)}: {Sentences}, {nameof(Reponses)}: {Reponses}, {nameof(Tags)}: {Tags}";
+    }
 }

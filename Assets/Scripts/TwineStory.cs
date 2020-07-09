@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TwineStory
 {
+    
     private Dictionary<string, TwineConversation> _conversations;
     private TwineConversation _startingConversation;
     private const int StartingIndex = 3;
@@ -40,6 +41,9 @@ public class TwineStory
     {
         return _startingConversation;
     }
-    
-    
+
+    public override string ToString()
+    {
+        return $"{nameof(_conversations)}: {_conversations}, {nameof(_startingConversation)}: {_startingConversation}";
+    }
 }
