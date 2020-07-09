@@ -13,6 +13,11 @@ public class TwineSentence
         _text = text;
     }
 
+    public override string ToString()
+    {
+        return $"{nameof(Character)}: {Character}, {nameof(Text)}: {Text}";
+    }
+
     public string Character
     {
         get => _character;

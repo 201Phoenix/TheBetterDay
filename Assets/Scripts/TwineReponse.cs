@@ -24,4 +24,9 @@ public class TwineReponse
         get => _linkedConversation;
         set => _linkedConversation = value;
     }
+
+    public override string ToString()
+    {
+        return $"{nameof(Text)}: {Text}, {nameof(LinkedConversation)}: {LinkedConversation}";
+    }
 }
