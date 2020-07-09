@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 287392405}
   - component: {fileID: 287392406}
   - component: {fileID: 287392409}
+  - component: {fileID: 287392407}
   m_Layer: 0
   m_Name: MainCharacter
   m_TagString: Untagged
@@ -240,6 +241,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &287392407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287392401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20a86d89b146d61da7faf3908c97227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textAsset: {fileID: 4900000, guid: 1658dd041ec7306e5a981167c0fc015b, type: 3}
 --- !u!50 &287392408
 Rigidbody2D:
   serializedVersion: 4

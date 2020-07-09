@@ -6,19 +6,39 @@ using UnityEngine;
 public class TwineStory
 {
     private Dictionary<string, TwineConversation> _conversations;
-    
-    private TwineStory() {}
-
-    private static readonly string REGEX = "";
-    public TwineStory Parse(string storyData)
+    private TwineConversation _startingConversation;
+    private const int StartingIndex = 3;
+    private static readonly string StartingTag = "start";
+    private TwineStory()
     {
-        var conversationData= storyData.Split(new string[]
+        _conversations = new Dictionary<string, TwineConversation>();
+    }
+    public static TwineStory Parse(string storyData)
+    {
+        TwineStory twineStory = new TwineStory();
+        var conversations= storyData.Split(new string[]
         {
-            "::"
+            @"::"
         }, StringSplitOptions.None);
+
+        for (int i = StartingIndex; i <  conversations.Length; ++i)
+        {
+            TwineConversation twineConversation = TwineConversation.Parse(conversations[i]);
+            
+            twineStory._conversations.Add(twineConversation.Title, twineConversation);
+
+            if (twineConversation.HasTag(StartingTag))
+            {
+                twineStory._startingConversation = twineConversation;
+            }
+        }
         
-        Debug.Log(conversationData);
-        return null;
+        return twineStory;
+    }
+
+    public TwineConversation GetStartingConversation()
+    {
+        return _startingConversation;
     }
     
     
