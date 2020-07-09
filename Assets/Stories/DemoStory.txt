@@ -1,0 +1,34 @@
+:: StoryTitle
+test\
+
+:: UserScript[script]
+
+
+:: UserStylesheet[stylesheet]
+
+
+:: section-1
+hhhhhhhhhhhhhhhhhh
+[[section-2]]
+
+:: section-2
+Double-click this passage to edit it.
+kefjdjkddddddddddddddd
+dkdkdkkdkd
+ddjdjdj
+
+
+ddkdkddk
+
+
+kdkdkkd
+[[section-3]]
+
+:: section-3
+Double-click this passage to edit it.
+[[section-4]] 
+
+:: section-4
+Double-click this passage to edit it.
+[[section-2]]
+
