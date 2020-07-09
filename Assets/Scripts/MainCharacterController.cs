@@ -15,7 +15,6 @@ public class MainCharacterController : MonoBehaviour
    
     void Update()
     {
-        Debug.Log(Input.GetAxis("Horizontal"));
         if (Input.GetKey(KeyCode.A))
         {
             _motion.MoveLeft();
